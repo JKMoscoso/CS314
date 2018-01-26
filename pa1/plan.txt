@@ -1,0 +1,25 @@
+	//PLAN: Take key components from each instruction and work my way up marking things as important
+	//Then remove all which are not flagged as critical.
+
+	//Ok got the end of the linked list to the instruction that I need, now I need to take the important aspects and
+	//Work my way up.
+
+	//Going to make a list now to take the important aspects by opcode
+	//			Look for next going up	Lead to you here from
+	//			Derive next		Derived from
+
+	//LOADI						rx;f2
+	//LOADAI		var offset f2		rx;f3
+	//STOREAI		rx;f1			var offset f3
+	//ADD			rx;f1 , ry;f2		rz;f3
+	//SUB			rx;f1 , ry;f2		rz;f3
+	//MUL			rx;f1 , ry;f2		rz;f3
+	//DIV			rx;f1 , ry;f2		rz;f3
+	//OUTPUTAI		var offset f2			
+
+	//Now I need to find what is guranteed to be followed from the previous instruction
+	//OUTPUTAI 		-> STOREAI
+	//STOREAI 		-> ADD,SUB,MUL,DIV,LOADI
+	//ADD,SUB,MUL,DIV 	-> LOADI,LOADAI
+	//LOADAI		-> LOADI,STOREAI
+	
